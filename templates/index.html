@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>DestroyMe.lol</title>
+    <meta name="description" content="Submit your sins. Get obliterated by a savage AI. You asked for it.">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://destroyme.lol/">
+    <meta property="og:title" content="DestroyMe.lol">
+    <meta property="og:description" content="Submit your sins. Get obliterated by AI.">
+    <meta property="og:image" content="/static/preview.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://destroyme.lol/">
+    <meta name="twitter:title" content="DestroyMe.lol">
+    <meta name="twitter:description" content="Submit your sins. Get obliterated by AI.">
+    <meta name="twitter:image" content="/static/preview.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .blinking-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.5rem; /* Match text height */
+            background-color: #ef4444; /* red-500 */
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { from, to { background-color: transparent } 50% { background-color: #ef4444; } }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4">
+
+    <div class="w-full max-w-2xl mx-auto">
+        <div id="form-container" class="fade-in">
+            <header class="text-center mb-8">
+                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter">Submit Your Sins.</h1>
+                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-red-500">Get Obliterated.</h1>
+                <p class="text-lg text-gray-400 mt-2">An AI roast machine. You asked for it.</p>
+            </header>
+    
+            <main>
+                <form id="roast-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="md:col-span-1"><label for="name" class="block text-sm font-medium text-gray-300">Name</label><input type="text" id="name" name="name" class="mt-1 block w-full bg-gray-800 border-gray-700 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 text-white p-2" required></div>
+                    <div class="md:col-span-1"><label for="age" class="block text-sm font-medium text-gray-300">Age</label><input type="number" id="age" name="age" class="mt-1 block w-full bg-gray-800 border-gray-700 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 text-white p-2" required></div>
+                    <div class="md:col-span-2"><label for="occupation" class="block text-sm font-medium text-gray-300">Occupation</label><input type="text" id="occupation" name="occupation" class="mt-1 block w-full bg-gray-800 border-gray-700 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 text-white p-2" required></div>
+                    <div class="md:col-span-2"><label for="achievement" class="block text-sm font-medium text-gray-300">Proudest achievement?</label><textarea id="achievement" name="achievement" rows="2" class="mt-1 block w-full bg-gray-800 border-gray-700 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 text-white p-2" required></textarea></div>
+                    <div class="md:col-span-2"><label for="failure" class="block text-sm font-medium text-gray-300">Biggest L recently?</label><textarea id="failure" name="failure" rows="2" class="mt-1 block w-full bg-gray-800 border-gray-700 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 text-white p-2" required></textarea></div>
+                    <div class="md:col-span-2"><label for="pleasure" class="block text-sm font-medium text-gray-300">Something you secretly enjoy?</label><textarea id="pleasure" name="pleasure" rows="2" class="mt-1 block w-full bg-gray-800 border-gray-700 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 text-white p-2" required></textarea></div>
+
+                    <div class="md:col-span-2 mt-4">
+                        <button type="submit" id="submit-button" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg text-xl transition-transform transform hover:scale-105">
+                            DESTROY ME 🔥
+                        </button>
+                    </div>
+                </form>
+                <p class="text-center text-xs text-gray-500 mt-6">Disclaimer: This is for entertainment only. Don’t cry.</p>
+            </main>
+        </div>
+
+        <div id="result-container" class="text-center hidden">
+            <h2 class="text-2xl font-bold text-red-500 mb-4">THE AI IS COOKING...</h2>
+            <div id="roast-output-wrapper" class="bg-gray-800 p-6 rounded-lg text-left text-lg leading-relaxed shadow-lg min-h-[150px]">
+                <p id="roast-output"></p>
+            </div>
+            <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
+                <button id="roast-again-button" class="w-full sm:w-auto bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg transition hidden">Roast Me Again</button>
+                <button id="copy-roast-button" class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg transition hidden">Copy Roast</button>
+            </div>
+        </div>
+
+        </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
